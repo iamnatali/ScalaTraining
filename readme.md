@@ -15,16 +15,16 @@ Do parallel processing, distributed over a limited number of workers, each with 
 
 Assume the number of workers is not very large (<= 100).
 
-### [basic version](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/PoolCatsEffect.scala)
+### [basic solution](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/PoolCatsEffect.scala)
 
 ### Bonus
 - Add methods to WorkerPool interface for adding workers on the fly and removing all workers. If all workers are removed, submitted jobs must wait until one is added.
 
-### [version with first bonus](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/PoolCatsEffectbonus1.scala)
+### [solution with first bonus](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/PoolCatsEffectbonus1.scala)
 
 - Generalize for any F using Concurrent typeclass
 
-### [version with second bonus](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/PoolCatsEffectbonus2.scala)
+### [solution with second bonus](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/PoolCatsEffectbonus2.scala)
 
 ## Race for success
 
@@ -39,7 +39,7 @@ Quickly obtain data which can be requested from multiple sources of unknown late
 
 Assume that there will be <= 32 providers and they all don’t block OS threads for I/O.
 
-### [basic version](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/raceCatsEffect.scala)
+### [basic solution](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/raceCatsEffect.scala)
 
 ## Bonus
 - [x] NEW (15/12/2018): Avoid using runtime checking for CompositeException (including pattern matching on it).
@@ -49,7 +49,7 @@ Assume that there will be <= 32 providers and they all don’t block OS threads 
     - [x] Don’t use toList. If you have to work with lists anyway, might as well push the conversion responsibility to the caller. 
     - [ ] If you want to support collections that might be empty (List, Vector, Option), the function must result in a failing IO/F when passed an empty value.
 
-### [version with bonuses](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/raceCatsEffectbonus1.scala)
+### [solution with bonuses](https://github.com/iamnatali/ScalaTraining/blob/master/src/main/scala/raceCatsEffectbonus1.scala)
 
 ### [from Oleg Pyzhcov 2](https://olegpy.com/resource-exercises/)
 
