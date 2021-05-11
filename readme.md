@@ -89,7 +89,7 @@ The requirements are as follows:
 - [x] All opened resources should be properly finalized when use is finished, in order of acquisition. 
 - [x] Even if one finalizer crashes, the rest should be attempted.
 - open should be atomic WRT cancellation: 
-  - [ ] resource is either opened or not (I think it is done, but test is not passed)
+  - [x] resource is either opened or not
   - [x] cannot be cancelled in the middle of acquisition.
 
 Both guarantees are provided to you with standard usage of Resource, but allocated removes them.

@@ -18,20 +18,13 @@ object Scope {
     for {
       finalizers <- Ref[IO].of(List.empty[IO[Unit]])
       r = new Scope {
-        def open[A](ra: Resource[IO, A]): IO[A] = {
+        def open[A](ra: Resource[IO, A]): IO[A] =
           IO.uncancelable { _ =>
             for {
-              pair <- ra.allocated.start.flatMap(fiber =>
-                fiber.join flatMap {
-                  case Outcome.Succeeded(fa) =>
-                    IO.println("succeeded") >> fa.flatMap(t => finalizers.getAndUpdate(list => t._2 +: list).as(t._1))
-                  case Outcome.Errored(e) => IO.println("errored") >> IO.raiseError(e)
-                  case Outcome.Canceled() => IO.println("canceled") >> open(ra)
-                }
-              )
-            } yield pair
+              t <- ra.allocated
+              res <- finalizers.getAndUpdate(list => t._2 +: list).as(t._1)
+            } yield res
           }
-        }
 
         def getFinalizers: IO[List[IO[Unit]]] = finalizers.get
       }
